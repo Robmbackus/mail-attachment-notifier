@@ -1,6 +1,6 @@
 {
   "name": "mail-attachment-notifier",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Nodejs Mail watcher that converts incoming csv and excel(xlsx) attachments to json and emits an event.",
   "main": "./index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "xlsxtojson",
     "unzip"
   ],
-  "dependencies": {
+  "devDependencies": {
     "adm-zip": "^0.4.7",
     "async": "^2.5.0",
     "csv-stream": "^0.1.3",
