@@ -70,9 +70,7 @@ function unzipAttachment(filePath, callback) {
 function readText(filePath, callback) {
     fs.readFile(filePath, 'utf8', function (err, data) {
         if (err) throw err;
-        console.log('OK: ' + filename);
-        console.log(data)
-        callback(false, data);
+        callback(false, [{data:data}]);
     });
 }
 
@@ -94,7 +92,7 @@ function csvToJson(filePath, callback) {
             callback(false, dataList)
         })
         .on('error', function (err) {
-            console.log(err)
+
         })
         .on('data', function (data) {
             dataList.push(data);
@@ -109,7 +107,7 @@ function xlsxToJson(filePath, callback) {
         output: null
     }, function (err, data) {
         if (err) {
-            console.error(err);
+
             callback(true, null)
         } else {
             //Array of data
@@ -134,13 +132,12 @@ util.inherits(MailAttachment, EventEmitter);
 MailAttachment.prototype.start = function(){
     var self = this;
     n.on('mail', function (mail) {
-        console.log(mail);
         if (mail.attachments) {
             async.each(mail.attachments, function (attachment, callback) {
                 var filePath = self.options.directory + '/' + attachment.fileName;
                 fs.writeFile(filePath, attachment.content, function (err) {
                     if (err) {
-                        console.log(err)
+
                     } else {
 
                         var fileExtension = mime.extension(attachment.contentType);
@@ -157,7 +154,7 @@ MailAttachment.prototype.start = function(){
                                 extention:fileExtension,
                                 path:filePath,
                                 data:result
-                            }
+                            };
 
                             self.emit('attachment', event);
 
