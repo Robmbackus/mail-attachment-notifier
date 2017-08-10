@@ -31,6 +31,12 @@ function ProcessAttachments(filePath, fileExtension, callback) {
                 readText(filePath, function (err, result) {
                     callback(err, result);
                 })
+                break;
+            default:
+
+                readText(filePath, function (err, result) {
+                    callback(err, result);
+                });
                 break
         }
     }
@@ -52,7 +58,7 @@ function unzipAttachment(filePath, callback) {
     var zipEntries = zip.getEntries(); // an array of ZipEntry records
 
     zipEntries.forEach(function (zipEntry) {
-        if (zipEntry.isDirectory == false && zipEntry.name.indexOf('._') < 0) {
+        if (!zipEntry.isDirectory && zipEntry.name.indexOf('._') < 0) {
             var contentType = mime.lookup(zipEntry.name);
             var fileExtension = mime.extension(contentType);
             var fileName = uuid.v1() + '.' + fileExtension;

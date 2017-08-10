@@ -4,7 +4,9 @@ Processes incoming csv and xlsx mail attachments and notifies node.js with the f
 introduction
 ------------
 Built on the popular [mail-notifier](https://www.npmjs.com/package/mail-notifier) module by [jcreigno](https://www.npmjs.com/~jcreigno), this module aims to provide streamlined attachment handling
-for CSV and Excel XLSX files. When a new mail arrives, it is scanned for attachments, converted into json and a 'attachment' event will be emitted.
+for CSV and Excel XLSX files. When a new mail arrives, it is scanned for attachments, csv, xlsx, and txt files will be converted into json and a 'attachment' event will be emitted.
+
+This module will also handle `.zip` files. Each file within the zip directory will be parsed and a separate event for each file will be emitted.
 
 Getting Started
 --------
@@ -44,7 +46,7 @@ Configuration built on [mail-notifier](https://www.npmjs.com/package/mail-notifi
 
 attachmentNotifier(config)
 ----------------
-The constructor function creates a new `notifier`. Parameter provide options needed for imap connection.
+The constructor function creates a new `attachmentNotifier`. Parameter provide options needed for imap connection.
 `config` :
 
 * `host` :  imap server host
