@@ -44,12 +44,8 @@ jspm_packages
 *.tgz
 
 
-yarn.lock
-
-
 npm-debug.log
 
-yarn-error.log
 
 .idea/
 .idea/.name
@@ -63,4 +59,3 @@ yarn-error.log
 .idea/libraries/ezforms_server_core_node_modules.xml
 .idea/scopes/scope_settings.xml
 
-uploads/*
