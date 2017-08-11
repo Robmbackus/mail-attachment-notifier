@@ -140,7 +140,7 @@ MailAttachment.prototype.start = function(){
     n.on('mail', function (mail) {
         if (mail.attachments) {
             async.each(mail.attachments, function (attachment, callback) {
-                var filePath = self.options.directory + '/' + attachment.fileName;
+                var filePath = (self.options.directory || "/tmp") + '/' + attachment.fileName;
                 fs.writeFile(filePath, attachment.content, function (err) {
                     if (err) {
 

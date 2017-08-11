@@ -21,7 +21,8 @@ const imap = {
   host: "imap.host.com",
   port: 993, // imap port
   tls: true,// use secure connection
-  tlsOptions: { rejectUnauthorized: false }
+  tlsOptions: { rejectUnauthorized: false },
+  directory: "/tmp"
 };
 
 var listenAttachments = attachmentNotifier(imap);
@@ -58,7 +59,7 @@ The constructor function creates a new `attachmentNotifier`. Parameter provide o
 * `markSeen`: mark mail as read defaults to true
 * `box` : mail box read from defaults to 'INBOX'
 * `search`: search query defaults to ['UNSEEN']
-* `debug`: *function* - if set, the function will be called with one argument, a string containing some debug info. Default: debug output if [enabled](#debugging).
+* `directory`:write file location, default to "/tmp"
 
 
 .start()
