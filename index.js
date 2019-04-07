@@ -137,6 +137,9 @@ util.inherits(MailAttachment, EventEmitter);
 
 MailAttachment.prototype.start = function(){
     var self = this;
+    n.on('end', function() {
+      n.start();
+    });
     n.on('mail', function (mail) {
         if (mail.attachments) {
             async.each(mail.attachments, function (attachment, callback) {
